@@ -11,4 +11,6 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw
 
 Install latest Docker Compose - downloads to Docker path:
 
+```
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-compose.ps1'))
+```
