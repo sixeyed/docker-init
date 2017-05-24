@@ -23,6 +23,10 @@ if ($service) {
     Start-Service docker
     Write-Output '--Starting Docker Windows service'
 }
+else {
+    $env:PATH = $env:ProgramFiles + '\docker;' + $env:PATH
+    [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
+}
 
 Write-Output '-Done'
 Write-Output '*'
