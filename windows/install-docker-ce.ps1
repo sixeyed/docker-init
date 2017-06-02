@@ -1,4 +1,5 @@
 
+$ProgressPreference = 'SilentlyContinue'
 $response = Invoke-WebRequest -UseBasicParsing https://api.github.com/repos/moby/moby/releases/latest
 $content = $response.Content
 $latest = ConvertFrom-Json $content
