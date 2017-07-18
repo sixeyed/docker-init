@@ -23,6 +23,8 @@ if ($service) {
 else {
     $env:PATH = $env:ProgramFiles + '\docker;' + $env:PATH
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
+
+    dockerd $env:DOCKERD_OPTS --register-service
 }
 
 Write-Output '-Done'
