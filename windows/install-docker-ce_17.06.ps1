@@ -18,13 +18,17 @@ Remove-Item $outFilePath
 
 if ($service) {
     Start-Service docker
-    Write-Output '--Starting Docker Windows service'
+    Write-Output '--Started Docker Windows service'
 }
 else {
     $env:PATH = $env:ProgramFiles + '\docker;' + $env:PATH
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
     dockerd $env:DOCKERD_OPTS --register-service
+    Write-Output '--Registered Docker Windows service - with options: ' + $env:DOCKERD_OPTS
+
+    Start-Service docker
+    Write-Output '--Started Docker Windows service'
 }
 
 Write-Output '-Done'
