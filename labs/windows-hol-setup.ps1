@@ -8,10 +8,7 @@
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # update Docker
-Stop-Service docker
-dockerd --unregister-service
-Add-WindowsFeature hyper-v
-choco install -y docker-for-windows --pre
+iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-ce_17.06.ps1 | iex
 
 # update base images
 $tag = '10.0.14393.1198'
