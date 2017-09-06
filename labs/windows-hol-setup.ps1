@@ -11,6 +11,10 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 $version = '17.07'
 iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-ce_$version.ps1 | iex
 
+#install Compose
+$composeVersion = '1.16'
+iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-compose_$composeVersion.ps1 | iex
+
 # update base images
 $tag = '10.0.14393.1593'
 docker pull "microsoft/windowsservercore:$tag"
