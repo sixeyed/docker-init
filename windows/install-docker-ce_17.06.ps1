@@ -1,6 +1,6 @@
 $ProgressPreference = 'SilentlyContinue'
 
-$version = '17.06.0-ce'
+$version = '17.06.1-ce'
 Write-Output "-Installing Docker version: $version"
 
 $service = Get-Service 'docker' -ErrorAction SilentlyContinue
