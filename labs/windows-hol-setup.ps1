@@ -8,10 +8,11 @@
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # update Docker
-iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-ce_17.06.ps1 | iex
+$version = '17.07'
+iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-ce_$version.ps1 | iex
 
 # update base images
-$tag = '10.0.14393.1198'
+$tag = '10.0.14393.1593'
 docker pull "microsoft/windowsservercore:$tag"
 docker pull "microsoft/nanoserver:$tag"
 docker tag "microsoft/windowsservercore:$tag" microsoft/windowsservercore:latest
@@ -30,12 +31,12 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Set-MpPreference -DisableRealtimeMonitoring $true
 
 # pull lab images
-docker pull microsoft/iis:windowsservercore-10.0.14393.1198
-docker pull microsoft/iis:nanoserver-10.0.14393.1198
-docker pull microsoft/aspnet:windowsservercore-10.0.14393.1198
-docker pull microsoft/mssql-server-windows-express:2016-sp1-windowsservercore-10.0.14393.1198
-docker pull microsoft/aspnet:windowsservercore-10.0.14393.1198
-docker pull microsoft/aspnet:windowsservercore-10.0.14393.1066
+docker pull microsoft/iis:windowsservercore
+docker pull microsoft/iis:nanoserver
+docker pull microsoft/aspnet:windowsservercore
+docker pull microsoft/mssql-server-windows-express
+docker pull microsoft/aspnet:windowsservercore-10.0.14393.1593
+docker pull microsoft/aspnet:windowsservercore-10.0.14393.1480
 
 docker pull nats:nanoserver
 docker pull sixeyed/elasticsearch:nanoserver
