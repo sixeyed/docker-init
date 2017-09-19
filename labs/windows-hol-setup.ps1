@@ -8,7 +8,7 @@
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # update Docker
-$version = '17.07'
+$version = '17.06'
 iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/install-docker-ce_$version.ps1 | iex
 
 #install Compose
@@ -17,10 +17,10 @@ iwr -useb https://raw.githubusercontent.com/sixeyed/docker-init/master/windows/i
 
 # update base images
 $tag = '10.0.14393.1593'
-docker pull "microsoft/windowsservercore:$tag"
-docker pull "microsoft/nanoserver:$tag"
-docker tag "microsoft/windowsservercore:$tag" microsoft/windowsservercore:latest
-docker tag "microsoft/nanoserver:$tag" microsoft/nanoserver:latest
+docker image pull "microsoft/windowsservercore:$tag"
+docker image pull "microsoft/nanoserver:$tag"
+docker image tag "microsoft/windowsservercore:$tag" microsoft/windowsservercore:latest
+docker image tag "microsoft/nanoserver:$tag" microsoft/nanoserver:latest
 
 # install tools
 choco install -y poshgit
@@ -35,16 +35,19 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Set-MpPreference -DisableRealtimeMonitoring $true
 
 # pull lab images
-docker pull microsoft/iis:windowsservercore
-docker pull microsoft/iis:nanoserver
-docker pull microsoft/aspnet:windowsservercore
-docker pull microsoft/mssql-server-windows-express
-docker pull microsoft/aspnet:windowsservercore-10.0.14393.1593
-docker pull microsoft/aspnet:windowsservercore-10.0.14393.1480
+docker image pull microsoft/iis:windowsservercore
+docker image pull microsoft/iis:nanoserver
+docker image pull microsoft/iis:nanoserver-10.0.14393.1593
+docker image pull microsoft/aspnet:windowsservercore
+docker image pull microsoft/mssql-server-windows-express
+docker image pull microsoft/aspnet:windowsservercore-10.0.14393.1593
+docker image pull microsoft/aspnet:windowsservercore-10.0.14393.1480
 
-docker pull nats:nanoserver
-docker pull sixeyed/elasticsearch:nanoserver
-docker pull sixeyed/kibana:nanoserver
+docker image pull sixeyed/msbuild:netfx-4.5.2
+docker image pull sixeyed/msbuild:netfx-4.5.2-webdeploy
+docker image pull dockersamples/aspnet-monitoring-prometheus
 
-docker pull sixeyed/msbuild:netfx-4.5.2
-docker pull sixeyed/msbuild:netfx-4.5.2-webdeploy
+docker image pull nats:nanoserver
+
+docker image pull sixeyed/elasticsearch:nanoserver
+docker image pull sixeyed/kibana:nanoserver
