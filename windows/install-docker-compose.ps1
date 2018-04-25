@@ -7,6 +7,7 @@ $version = $latest.tag_name
 
 Write-Output "-Installing Docker Compose version: $version"
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $downloadUrl = "https://github.com/docker/compose/releases/download/$version/docker-compose-Windows-x86_64.exe"
 $outFilePath = "$env:TEMP\docker-compose.exe"
 Write-Output "--Downloading: $downloadUrl"
